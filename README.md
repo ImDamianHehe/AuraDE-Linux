@@ -17,6 +17,7 @@ Copy files
 `sudo cp -r /path/to/start-aurade /usr/local/bin/start-aurade`
 `cp -r /path/to/auramass.jar ~/.AuraMass/auramass.jar`
 `cp -r /path/to/aurade.jar ~/.local/aurade/aurade.jar`
+`cp -r /path/to/aurade.desktop /usr/share/xsessions/aurade.desktop`
 
 Optional files to copy
 `cp -r /path/to/wallpaper.jpg ~/.local/aurade/wallpaper.jpg`
@@ -32,7 +33,6 @@ Arch Linux:
     xorg-xsetroot \
     xorg-xprop \
     openbox \
-    obconf \
     firefox \
     less \
     jre-openjdk \
@@ -40,11 +40,11 @@ Arch Linux:
     tint2 \
     pcmanfm \
     dbus \
-    dbus-x11 \
     xdg-utils \
     xdg-user-dirs \
     ttf-dejavu \
-    ttf-liberation
+    ttf-liberation \
+    sddm
 
 Ubuntu:
     
@@ -55,16 +55,16 @@ Ubuntu:
     x11-utils \
     x11-xkb-utils \
     openbox \
-    obconf \
     firefox \
     less \
     default-jre \
     feh \
     tint2 \
     pcmanfm \
-    dbus-x11 \
     xdg-utils \
     xdg-user-dirs \
     fonts-dejavu \
-    fonts-liberation
+    fonts-liberation \
+    sddm
     
+optional packages: `obconf` or `obconf-qt` (for window decoration themes, etc)
