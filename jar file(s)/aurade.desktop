@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=AuraDE
+Comment=Simple Java Desktop
+Exec=/usr/local/bin/start-aurade
+Type=Application
+DesktopNames=AuraDE
