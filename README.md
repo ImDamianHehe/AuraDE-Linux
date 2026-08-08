@@ -9,18 +9,18 @@ Step 1: copy auramass file and start-aurade
 To do that, you need to Download the files in https://github.com/ImDamianHehe/AuraDE-Linux/tree/main/jar%20file(s) then do these commands:
 
 Create Directories
-`mkdir ~/.local/aurade`
-`mkdir ~/.AuraMass`
+    mkdir ~/.local/aurade
+    mkdir ~/.AuraMass
 
 Copy files
-`cp -r ~/path/to/auramass ~/.local/bin/auramass`
-`sudo cp -r /path/to/start-aurade /usr/local/bin/start-aurade`
-`cp -r /path/to/auramass.jar ~/.AuraMass/auramass.jar`
-`cp -r /path/to/aurade.jar ~/.local/aurade/aurade.jar`
-`cp -r /path/to/aurade.desktop /usr/share/xsessions/aurade.desktop`
+    cp -r ~/path/to/auramass ~/.local/bin/auramass
+    sudo cp -r /path/to/start-aurade /usr/local/bin/start-aurade
+    cp -r /path/to/auramass.jar ~/.AuraMass/auramass.jar
+    cp -r /path/to/aurade.jar ~/.local/aurade/aurade.jar
+    cp -r /path/to/aurade.desktop /usr/share/xsessions/aurade.desktop
 
 Optional files to copy
-`cp -r /path/to/wallpaper.jpg ~/.local/aurade/wallpaper.jpg`
+    cp -r /path/to/wallpaper.jpg ~/.local/aurade/wallpaper.jpg
 
 Required packages to install:
 
