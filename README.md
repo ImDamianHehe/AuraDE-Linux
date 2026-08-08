@@ -9,11 +9,11 @@ Manual installation only for now
 
 # How to install:
 
-## Step 1: copy auramass file and start-aurade
+### Step 1: copy auramass file and start-aurade
 
 To do that, you need to Download all the files in https://github.com/ImDamianHehe/AuraDE-Linux/tree/main/jar%20file(s) then do these commands:
 
-### Create Directories
+## Create Directories
 
 ```bash
 mkdir -p ~/.local/bin
@@ -21,7 +21,7 @@ mkdir -p ~/.local/aurade
 mkdir -p ~/.AuraMass
 ```
 
-### Copy files
+## Copy files
 
 ```bash
 cp -r /path/to/auramass ~/.local/bin/auramass
@@ -31,21 +31,21 @@ cp -r /path/to/aurade.jar ~/.local/aurade/aurade.jar
 sudo cp -r /path/to/aurade.desktop /usr/share/xsessions/aurade.desktop
 ```
 
-### Optional files to copy
+## Optional files to copy
 
 ```bash
 cp -r /path/to/wallpaper.jpg ~/.local/aurade/wallpaper.jpg
 ```
 
-### Make files executable
+## Make files executable
 
 ```bash
 chmod +x ~/.local/bin/auramass
 sudo chmod +x /usr/local/bin/start-aurade
 ```
 
-## Step 2: Install packages
-# Required packages to install:
+### Step 2: Install packages
+## Required packages to install:
 
 ## Arch Linux:
 
@@ -94,11 +94,11 @@ fonts-liberation \
 sddm
 ```
 
-### Optional packages
+## Optional packages
 
 `obconf` or `obconf-qt` (for window decoration themes, etc.)
 
-## Step 3: enable the services:
+### Step 3: enable the services:
 
 ```bash
 sudo systemctl enable sddm.service
