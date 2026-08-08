@@ -24,7 +24,8 @@ Optional files to copy
 Required packages to install:
 
 Arch Linux:
-sudo pacman -S \
+
+    sudo pacman -S \
     xorg-server \
     xorg-xinit \
     xorg-xrandr \
@@ -45,7 +46,8 @@ sudo pacman -S \
     ttf-dejavu \
     ttf-liberation
 
-    Ubuntu:
+Ubuntu:
+    
     sudo apt install -y \
     xorg \
     xinit \
