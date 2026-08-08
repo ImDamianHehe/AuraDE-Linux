@@ -114,7 +114,7 @@ or
 reboot
 ```
 
-### Important
+# Important
 
 **AuraMass** is the terminal emulator used by AuraDE and is currently the **only supported terminal emulator**. At the moment, AuraDE does not provide a way to change the default terminal, so **AuraMass is required for a functional AuraDE installation**.
 
