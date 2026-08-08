@@ -1,94 +1,238 @@
 import javax.swing.*;
+import java.awt.GraphicsEnvironment;
+import java.awt.GraphicsDevice;
 import java.awt.*;
-import java.io.*;
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+import java.nio.file.*;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.Timer;
 
 public class Main {
-
     public static void main(String[] args) {
-        JFrame frame = new JFrame("AuraMass");
+        SwingUtilities.invokeLater(() -> {
 
-        frame.setSize(650, 450);
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            Color DESKTOP_BG = new Color(12, 14, 20);
+            Color PANEL_BG = new Color(10, 12, 18);
+            Color BUTTON_BG = new Color(20, 24, 34);
+            Color BUTTON_HOVER = new Color(30, 36, 50);
+            Color MENU_BG = new Color(16, 18, 26);
+            Color MENU_HOVER = new Color(28, 32, 44);
+            Color TEXT = new Color(235, 240, 255);
 
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(Color.DARK_GRAY);
+            JFrame desktop = new JFrame("desktop");
 
-        JTextArea terminal = new JTextArea();
-        terminal.setBackground(Color.DARK_GRAY);
-        terminal.setForeground(Color.WHITE);
-        terminal.setCaretColor(Color.WHITE);
-        terminal.setEditable(false);
+            String home = System.getProperty("user.home");
+            Path auradeDir = Paths.get(home, ".local", "aurade");
 
-        JTextField runCommandField = new JTextField();
+            try {
+                Files.createDirectories(auradeDir);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-        panel.add(new JScrollPane(terminal), BorderLayout.CENTER);
-        panel.add(runCommandField, BorderLayout.SOUTH);
+            String wallpaperPath = auradeDir.resolve("wallpaper.jpg").toString();
 
-        frame.add(panel);
+            JPanel screen;
 
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+            if (Files.exists(Path.of(wallpaperPath))) {
+                screen = new WallpaperPanel(wallpaperPath);
+            } else {
+                screen = new JPanel(null);
+                screen.setBackground(DESKTOP_BG);
+            }
 
-        try {
-            // Start Bash
-            ProcessBuilder processBuilder = new ProcessBuilder("/bin/bash");
-            Process process = processBuilder.start();
+            JButton menuButton = new JButton("Menu");
+            JPopupMenu menu = new JPopupMenu();
 
-            BufferedWriter writer = new BufferedWriter(
-                    new OutputStreamWriter(process.getOutputStream())
+            JMenuItem terminalItem = new JMenuItem("Terminal");
+            JMenuItem browserItem = new JMenuItem("Browser");
+            JMenuItem fileItem = new JMenuItem("File Manager");
+            JMenuItem logoutItem = new JMenuItem("Logout");
+
+            JPanel panel = new JPanel();
+
+            JLabel clockLabel = new JLabel();
+            clockLabel.setFont(new Font("Arial", Font.BOLD, 16));
+            clockLabel.setForeground(TEXT);
+            clockLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+
+            clockLabel.setBounds(
+                    Toolkit.getDefaultToolkit().getScreenSize().width - 120,
+                    0,
+                    110,
+                    30
             );
 
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(process.getInputStream())
-            );
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-            // Thread that constantly reads Bash output
-            Thread outputThread = new Thread(() -> {
-                try {
-                    String line;
+            Timer clockTimer = new Timer(1000, e -> {
+                LocalTime now = LocalTime.now();
+                clockLabel.setText(now.format(formatter));
+            });
 
-                    while ((line = reader.readLine()) != null) {
-                        String output = line;
+            clockTimer.setInitialDelay(0);
+            clockTimer.start();
 
-                        SwingUtilities.invokeLater(() -> {
-                            terminal.append(output + "\n");
-                        });
-                    }
+            menuButton.setBounds(5, 0, 80, 30);
 
-                } catch (IOException e) {
-                    SwingUtilities.invokeLater(() -> {
-                        terminal.append("Error reading output: "
-                                + e.getMessage() + "\n");
-                    });
+            menuButton.setBackground(BUTTON_BG);
+            menuButton.setForeground(TEXT);
+            menuButton.setFocusPainted(false);
+            menuButton.setBorderPainted(false);
+            menuButton.setOpaque(true);
+
+            menuButton.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseEntered(java.awt.event.MouseEvent e) {
+                    menuButton.setBackground(BUTTON_HOVER);
+                }
+
+                @Override
+                public void mouseExited(java.awt.event.MouseEvent e) {
+                    menuButton.setBackground(BUTTON_BG);
                 }
             });
 
-            outputThread.start();
+            panel.setBounds(
+                    0,
+                    0,
+                    Toolkit.getDefaultToolkit().getScreenSize().width,
+                    30
+            );
 
-            // Run command when Enter is pressed
-            runCommandField.addActionListener(e -> {
-                try {
-                    String command = runCommandField.getText();
+            panel.setLayout(null);
+            panel.setBackground(PANEL_BG);
 
-                    if (!command.isEmpty()) {
-                        writer.write(command);
-                        writer.newLine();
-                        writer.flush();
+            menu.setBackground(MENU_BG);
+            menu.setBorder(BorderFactory.createLineBorder(new Color(36, 42, 58)));
 
-                        runCommandField.setText("");
+            JMenuItem[] items = {
+                    terminalItem,
+                    browserItem,
+                    fileItem,
+                    logoutItem
+            };
+
+            for (JMenuItem item : items) {
+                item.setBackground(MENU_BG);
+                item.setForeground(TEXT);
+                item.setOpaque(true);
+                item.setBorder(BorderFactory.createEmptyBorder(8, 12, 8, 12));
+
+                item.addMouseListener(new java.awt.event.MouseAdapter() {
+                    @Override
+                    public void mouseEntered(java.awt.event.MouseEvent e) {
+                        item.setBackground(MENU_HOVER);
                     }
 
-                } catch (IOException ex) {
-                    terminal.append("Error: "
-                            + ex.getMessage() + "\n");
+                    @Override
+                    public void mouseExited(java.awt.event.MouseEvent e) {
+                        item.setBackground(MENU_BG);
+                    }
+                });
+            }
+
+            desktop.setUndecorated(true);
+            desktop.setFocusableWindowState(false);
+            desktop.setAutoRequestFocus(false);
+            desktop.setDefaultCloseOperation(EXIT_ON_CLOSE);
+            desktop.setResizable(false);
+
+            screen.setLayout(null);
+            screen.setBackground(DESKTOP_BG);
+
+            menuButton.addActionListener(e -> {
+                JPopupMenu.setDefaultLightWeightPopupEnabled(false);
+                menu.show(menuButton, 0, menuButton.getHeight());
+            });
+
+            terminalItem.addActionListener(e -> {
+                try {
+                    new ProcessBuilder("auramass").start();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             });
 
-        } catch (IOException e) {
-            terminal.append(
-                    "Failed to start Bash: " + e.getMessage() + "\n"
-            );
-        }
+            browserItem.addActionListener(e -> {
+                try {
+                    new ProcessBuilder("firefox").start();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+
+            fileItem.addActionListener(e -> {
+                try {
+                    new ProcessBuilder("dolphin").start();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+
+            logoutItem.addActionListener(e -> System.exit(0));
+
+            desktop.setContentPane(screen);
+
+            screen.add(panel);
+
+            panel.add(menuButton);
+            panel.add(clockLabel);
+
+            menu.add(terminalItem);
+            menu.add(browserItem);
+            menu.add(fileItem);
+            menu.add(logoutItem);
+
+            GraphicsEnvironment ge =
+                    GraphicsEnvironment.getLocalGraphicsEnvironment();
+
+            GraphicsDevice gd =
+                    ge.getDefaultScreenDevice();
+
+            Rectangle screenBounds =
+                    gd.getDefaultConfiguration().getBounds();
+
+            desktop.setBounds(screenBounds);
+
+            desktop.setVisible(true);
+
+            try {
+                new ProcessBuilder(
+                        "wmctrl",
+                        "-r",
+                        "desktop",
+                        "-b",
+                        "add,below"
+                ).start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+}
+
+class WallpaperPanel extends JPanel {
+
+    private final Image wallpaper;
+
+    public WallpaperPanel(String path) {
+        wallpaper = new ImageIcon(path).getImage();
+        setLayout(null);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        g.drawImage(
+                wallpaper,
+                0,
+                0,
+                getWidth(),
+                getHeight(),
+                this
+        );
     }
 }
