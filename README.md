@@ -45,7 +45,7 @@ sudo chmod +x /usr/local/bin/start-aurade
 ```
 
 ### Step 2: Install packages
-## Required packages to install:
+## Required packages to install
 
 ## Arch Linux:
 
