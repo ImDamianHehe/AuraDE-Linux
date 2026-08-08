@@ -7,6 +7,10 @@ AuraDE is still in early development and is currently maintained by one develope
 
 Manual installation only for now
 
+## Screenshot
+
+![AuraDE desktop](desktop.png)
+
 # How to install:
 
 ### Step 1: copy the files
@@ -117,11 +121,6 @@ reboot
 # Important
 
 **AuraMass** is the terminal emulator used by AuraDE and is currently the **only supported terminal emulator**. At the moment, AuraDE does not provide a way to change the default terminal, so **AuraMass is required for a functional AuraDE installation**.
-
-
-## Screenshot
-
-![AuraDE desktop](desktop.png)
 
 # Additional information
 
