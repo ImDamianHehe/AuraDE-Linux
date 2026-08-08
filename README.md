@@ -1,8 +1,11 @@
-## AuraDE-Linux
+AuraDE-Linux
 
-AuraDE is a small Linux DE (Desktop Environment) project, aiming for old + modern combination, written in Java.
+AuraDE is a small Linux desktop environment (DE) project written in Java, aiming to provide a blend of classic and modern desktop ideas.
 
-# Manual installation only for now!
+Warning
+AuraDE is still in early development and is currently maintained by one developer. Expect missing features, bugs, and rough edges.
+
+Manual installation only for now
 
 # How to install:
 
@@ -13,8 +16,9 @@ To do that, you need to Download all the files in https://github.com/ImDamianHeh
 ### Create Directories
 
 ```bash
-mkdir ~/.local/aurade
-mkdir ~/.AuraMass
+mkdir -p ~/.local/bin
+mkdir -p ~/.local/aurade
+mkdir -p ~/.AuraMass
 ```
 
 ### Copy files
@@ -40,6 +44,7 @@ chmod +x ~/.local/bin/auramass
 sudo chmod +x /usr/local/bin/start-aurade
 ```
 
+## Step 2: Install packages
 # Required packages to install:
 
 ## Arch Linux:
@@ -92,3 +97,25 @@ sddm
 ### Optional packages
 
 `obconf` or `obconf-qt` (for window decoration themes, etc.)
+
+## Step 3: enable the services:
+
+```bash
+sudo systemctl enable sddm.service
+sudo systemctl start sddm.service
+```
+
+## You're done! now reboot to SDDM so you can enter the DE (Desktop Enviroment):
+```bash
+sudo reboot
+```
+or
+```bash
+reboot
+```
+
+Additional information
+
+AuraMass is a terminal emulator and the default terminal emulator for AuraDE.
+
+After rebooting, select AuraDE from the SDDM session menu before logging in.
