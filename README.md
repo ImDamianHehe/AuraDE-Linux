@@ -9,7 +9,7 @@ Manual installation only for now
 
 # How to install:
 
-### Step 1: copy auramass file and start-aurade
+### Step 1: copy the files
 
 To do that, you need to Download all the files in https://github.com/ImDamianHehe/AuraDE-Linux/tree/main/jar%20file(s) then do these commands:
 
