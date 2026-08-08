@@ -114,7 +114,7 @@ or
 reboot
 ```
 
-Additional information
+# Additional information
 
 AuraMass is a terminal emulator and the default terminal emulator for AuraDE.
 
