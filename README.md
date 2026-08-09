@@ -73,8 +73,9 @@ xdg-utils \
 xdg-user-dirs \
 ttf-dejavu \
 ttf-liberation \
-sddm
-konsole
+sddm \
+konsole \
+obconf-qt
 ```
 
 ## Ubuntu:
@@ -98,13 +99,14 @@ xdg-utils \
 xdg-user-dirs \
 fonts-dejavu \
 fonts-liberation \
-sddm
-konsole
+sddm \
+konsole \
+obconf-qt
 ```
 
 ## Optional packages
 
-`obconf` or `obconf-qt` (for window decoration themes, etc.)
+(none)
 
 ### Step 3: enable the services:
 
@@ -127,6 +129,8 @@ reboot
 **AuraMass** is the terminal emulator used by AuraDE and is currently the **only supported terminal emulator**. At the moment, AuraDE does not provide a way to change the default terminal, so **AuraMass is required for a functional AuraDE installation**.
 
 And you can type ```konsole``` in AuraMass terminal to get KDE's terminal if you have installed konsole.
+
+**Change the margins ***Top*** to 30 in obconf-qt settings so the DE works properly and more stable** 
 
 # Additional information
 
