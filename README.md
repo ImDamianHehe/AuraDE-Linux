@@ -137,3 +137,6 @@ And you can type ```konsole``` in AuraMass terminal to get KDE's terminal if you
 AuraMass is a terminal emulator and the default terminal emulator for AuraDE.
 
 After rebooting, select AuraDE from the SDDM session menu before logging in.
+
+# OPEN-SOURCE
+this Desktop Enviroment is OPEN-SOURCE, you can see the code at: https://github.com/ImDamianHehe/AuraDE-Linux/blob/main/code/desktop%20enviroment/Main.java
