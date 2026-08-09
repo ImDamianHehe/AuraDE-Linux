@@ -68,6 +68,7 @@ feh \
 tint2 \
 pcmanfm \
 dbus \
+dolphin \
 xdg-utils \
 xdg-user-dirs \
 ttf-dejavu \
@@ -86,6 +87,7 @@ x11-xserver-utils \
 x11-utils \
 x11-xkb-utils \
 openbox \
+dolphin \
 firefox \
 less \
 default-jre \
