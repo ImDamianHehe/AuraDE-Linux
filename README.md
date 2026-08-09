@@ -76,7 +76,8 @@ ttf-dejavu \
 ttf-liberation \
 sddm \
 konsole \
-obconf-qt
+obconf-qt \
+polkit-kde-agent
 ```
 
 ## Ubuntu:
@@ -102,7 +103,8 @@ fonts-dejavu \
 fonts-liberation \
 sddm \
 konsole \
-obconf-qt
+obconf-qt \
+polkit-kde-agent
 ```
 
 ## Optional packages
