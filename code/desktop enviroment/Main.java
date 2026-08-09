@@ -49,11 +49,43 @@ public class Main {
 
             JButton systemButton = new JButton("System");
             JButton appsButton = new JButton("Apps");
+            JButton toolsButton = new JButton("Tools");
 
             JPopupMenu appsMenu = new JPopupMenu();
             JPopupMenu systemMenu = new JPopupMenu();
+            JPopupMenu toolsMenu = new JPopupMenu();
 
             buildApplicationsMenu(appsMenu, MENU_BG, MENU_HOVER, TEXT);
+
+            JMenuItem terminalItem = new JMenuItem("Terminal (konsole)");
+            JMenuItem auraMassItem = new JMenuItem("Terminal (Built-In)");
+            JMenuItem fileItem = new JMenuItem("File Manager");
+
+            JMenuItem[] toolsItems = {
+                    terminalItem,
+                    auraMassItem,
+                    fileItem
+            };
+
+            for (JMenuItem item : toolsItems) {
+                item.setBackground(MENU_BG);
+                item.setForeground(TEXT);
+                item.setOpaque(true);
+                item.setBorder(BorderFactory.createEmptyBorder(8, 12, 8, 12));
+
+                item.addMouseListener(new java.awt.event.MouseAdapter() {
+                    @Override
+                    public void mouseEntered(java.awt.event.MouseEvent e) {
+                        item.setBackground(MENU_HOVER);
+                    }
+
+                    @Override
+                    public void mouseExited(java.awt.event.MouseEvent e) {
+                        item.setBackground(MENU_BG);
+                    }
+                });
+            }
+
 
             JMenuItem restartItem = new JMenuItem("Restart");
             JMenuItem powerItem = new JMenuItem("Power Off");
@@ -128,6 +160,38 @@ public class Main {
                     30
             );
 
+            terminalItem.addActionListener(e -> {
+                try {
+                    new ProcessBuilder("konsole").start();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+
+            auraMassItem.addActionListener(e -> {
+                try {
+                    new ProcessBuilder("auramass").start();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+
+            fileItem.addActionListener(e -> {
+                try {
+                    new ProcessBuilder("dolphin").start();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+
+            toolsMenu.setBackground(BUTTON_BG);
+            toolsMenu.setForeground(TEXT);
+            toolsMenu.setBorderPainted(false);
+            toolsMenu.setOpaque(true);
+            toolsMenu.add(terminalItem);
+            toolsMenu.add(auraMassItem);
+            toolsMenu.add(fileItem);
+
             JLabel clockLabel = new JLabel();
             clockLabel.setFont(new Font("Arial", Font.BOLD, 16));
             clockLabel.setForeground(TEXT);
@@ -199,8 +263,9 @@ public class Main {
 
             appsButton.setBounds(5, 0, 80, 30);
             systemButton.setBounds(90, 0, 90, 30);
+            toolsButton.setBounds(185, 0, 95, 30);
 
-            JButton[] topButtons = { appsButton, systemButton };
+            JButton[] topButtons = { appsButton, systemButton, toolsButton};
 
             for (JButton button : topButtons) {
 
@@ -271,6 +336,11 @@ public class Main {
                 systemMenu.show(systemButton, 0, systemButton.getHeight());
             });
 
+            toolsButton.addActionListener(e -> {
+                JPopupMenu.setDefaultLightWeightPopupEnabled(false);
+                toolsMenu.show(toolsButton, 0, toolsButton.getHeight());
+            });
+
             desktop.setContentPane(screen);
 
             screen.add(panel);
@@ -279,6 +349,7 @@ public class Main {
             panel.add(systemButton);
             panel.add(wifiButton);
             panel.add(clockLabel);
+            panel.add(toolsButton);
 
             GraphicsEnvironment ge =
                     GraphicsEnvironment.getLocalGraphicsEnvironment();
