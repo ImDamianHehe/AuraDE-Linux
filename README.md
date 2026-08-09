@@ -77,7 +77,8 @@ ttf-liberation \
 sddm \
 konsole \
 obconf-qt \
-polkit-kde-agent
+polkit-kde-agent \
+brightnessctl
 ```
 
 ## Ubuntu:
@@ -104,7 +105,8 @@ fonts-liberation \
 sddm \
 konsole \
 obconf-qt \
-polkit-kde-agent
+polkit-kde-agent \
+brightnessctl
 ```
 
 ## Optional packages
