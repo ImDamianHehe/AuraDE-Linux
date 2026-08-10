@@ -9,7 +9,7 @@ Manual installation only for now
 
 ## Screenshot
 
-![AuraDE desktop](desktop.png)
+![AuraDE desktop](AuraDE.png)
 
 # How to install:
 
