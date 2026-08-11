@@ -36,6 +36,8 @@ sudo cp -r /path/to/start-aurade /usr/local/bin/start-aurade
 cp -r /path/to/auramass.jar ~/.AuraMass/auramass.jar
 cp -r /path/to/aurade.jar ~/.local/aurade/aurade.jar
 sudo cp -r /path/to/aurade.desktop /usr/share/xsessions/aurade.desktop
+cp -r /path/to/aura-settings ~/.local/bin/aura-settings
+cp -r /path/to/settings.json ~/.local/aurade/config/settings.json
 ```
 
 ## Optional files to copy
