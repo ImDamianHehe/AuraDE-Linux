@@ -22,7 +22,9 @@ To do that, you need to Download all the files in https://github.com/ImDamianHeh
 ```bash
 mkdir -p ~/.local/bin
 mkdir -p ~/.local/aurade
+mkdir -p ~/.local/aurade/config
 mkdir -p ~/.AuraMass
+mkdir -p ~/.AuraSettings
 mkdir -p /usr/share/xsessions
 ```
 
