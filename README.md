@@ -40,12 +40,6 @@ cp -r /path/to/aura-settings ~/.local/bin/aura-settings
 cp -r /path/to/settings.json ~/.local/aurade/config/settings.json
 ```
 
-## Optional files to copy
-
-```bash
-cp -r /path/to/wallpaper.jpg ~/.local/aurade/wallpaper.jpg
-```
-
 ## Make files executable
 
 ```bash
